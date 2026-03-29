@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- ========================================
+       基本設定
+       charset: 文字コード（日本語対応）
+       viewport: スマホ表示を正しくするための設定
+  ======================================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>zen | Portfolio</title>
+
+  <style>
+    /* ========================================
+       全体のリセット＆共通設定
+    ======================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* フォント・背景・文字色 */
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      background-color: #f8f8f6;
+      color: #2d2d2d;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* ページ全体の横幅を制限（横に広がりすぎない） */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* セクションの共通余白 */
+    section {
+      padding: 72px 0;
+    }
+
+    /* セクションタイトルの共通スタイル */
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    /* 区切り線 */
+    .divider {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    /* ========================================
+       HEADER（名前 + キャッチコピー）
+    ======================================== */
+    header {
+      padding: 80px 0 64px;
+      text-align: left;
+    }
+
+    header .name {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+
+    header .tagline {
+      font-size: 1.05rem;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       ABOUT（自己紹介）
+    ======================================== */
+    #about .bio {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.9;
+    }
+
+    #about .bio p {
+      margin-bottom: 16px;
+    }
+
+    /* タグ（スキルや興味を小さく表示） */
+    #about .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    #about .tag {
+      background-color: #efefeb;
+      color: #555;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    /* ========================================
+       WORKS（作品紹介カード）
+    ======================================== */
+    #works .works-grid {
+      display: grid;
+      /* スマホ: 1列 / タブレット以上: 2列 */
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    /* カード1枚 */
+    .work-card {
+      background: #ffffff;
+      border: 1px solid #e8e8e4;
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .work-card:hover {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    /* カードのタイトル */
+    .work-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #2d2d2d;
+    }
+
+    /* カードの説明文 */
+    .work-card p {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    /* カードのリンクボタン */
+    .work-card a {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: #3a7bd5;
+      text-decoration: none;
+      border-bottom: 1px solid #3a7bd5;
+      padding-bottom: 1px;
+    }
+
+    .work-card a:hover {
+      color: #2558a8;
+      border-color: #2558a8;
+    }
+
+    /* 技術タグ（使用言語など） */
+    .work-card .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .work-card .tech-tag {
+      background: #f0f4ff;
+      color: #3a7bd5;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    /* ========================================
+       CONTACT（連絡先）
+    ======================================== */
+    #contact .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    #contact .contact-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    /* アイコン代わりのラベル */
+    #contact .contact-label {
+      display: inline-block;
+      min-width: 72px;
+      color: #888;
+      font-size: 0.85rem;
+    }
+
+    #contact a {
+      color: #2d2d2d;
+      text-decoration: none;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #contact a:hover {
+      color: #3a7bd5;
+      border-color: #3a7bd5;
+    }
+
+    /* ========================================
+       FOOTER
+    ======================================== */
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    /* ========================================
+       スマホ対応（画面幅600px以下）
+    ======================================== */
+    @media (max-width: 600px) {
+      header .name {
+        font-size: 1.8rem;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+
+      .works-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================================
+       HEADER：名前とキャッチコピー
+  ======================================== -->
+  <header>
+    <div class="container">
+      <p class="name">zen</p>
+      <p class="tagline">
+        物流の現場から、コードの世界へ。<br>
+        コツコツ積み上げる、初心者エンジニアです。
+      </p>
+    </div>
+  </header>
+
+  <hr class="divider" />
+
+  <!-- ========================================
+       ABOUT：自己紹介
+  ======================================== -->
+  <section id="about">
+    <div class="container">
+      <p class="section-title">About</p>
+
+      <div class="bio">
+        <p>
+          こんにちは。zenと申します。
+        </p>
+        <p>
+          倉庫業・物流の現場に20年以上携わってきました。
+          毎日の仕事の中で「もっとシンプルに、もっと分かりやすく」を
+          考え続けてきた経験が、今のものづくりの軸になっています。
+        </p>
+        <p>
+          現在は AI・Java・Python を学び始めたばかりの初心者ですが、
+          着実に積み上げることを大切にしながら、
+          自分で使えるものを少しずつ作っています。
+        </p>
+        <p>
+          難しすぎず、でも妥協しない。そういうものを目指しています。
+        </p>
+      </div>
+
+      <!-- 興味・学習中のキーワード -->
+      <div class="tags">
+        <span class="tag">AI</span>
+        <span class="tag">Python</span>
+        <span class="tag">Java</span>
+        <span class="tag">HTML / CSS</span>
+        <span class="tag">物流・業務改善</span>
+        <span class="tag">シンプルなUIづくり</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ========================================
+       WORKS：作品紹介
+       ★ カードを増やしたいときは
+          <div class="work-card">〜</div>
+          のブロックをコピーして追加するだけ
+  ======================================== -->
+  <section id="works">
+    <div class="container">
+      <p class="section-title">Works</p>
+
+      <div class="works-grid">
+
+        <!-- 作品カード 1 -->
+        <div class="work-card">
+          <h3>引っ越しアシスタント</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+          <p>引っ越し時のタスクと持ち物を管理するWebアプリ。
+            シンプルな操作で手続きの抜け漏れを防ぐことができます。</p>
+          <a href="#" target="_blank">→ 見てみる</a>
+        </div>
+
+        <!-- 作品カード 2 -->
+        <div class="work-card">
+          <h3>ゴミ出しナビ</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+          </div>
+          <p>曜日ごとのゴミの種類を確認できるシンプルなナビページ。
+            毎朝確認できるように軽量設計にしました。</p>
+          <a href="#" target="_blank">→ 見てみる</a>
+        </div>
+
+        <!-- 作品カード 3 -->
+        <div class="work-card">
+          <h3>お母さん買い物リスト</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+          <p>家族が使いやすいシンプルな買い物リストアプリ。
+            スマホで見やすいように縦スクロール設計にしました。</p>
+          <a href="#" target="_blank">→ 見てみる</a>
+        </div>
+
+        <!-- ★ ここにカードを追加できます ★ -->
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ========================================
+       CONTACT：連絡先
+       ★ href="#" の部分を実際のURLに変えてください
+  ======================================== -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-title">Contact</p>
+
+      <ul class="contact-list">
+        <li>
+          <span class="contact-label">Email</span>
+          <a href="mailto:ebisu7024@gmail.com">ebisu7024@gmail.com</a>
+        </li>
+        <li>
+          <span class="contact-label">GitHub</span>
+          <a href="https://github.com/zen7024" target="_blank">github.com/zen7024</a>
+        </li>
+        <!-- SNSを追加したい場合はここにコピーして追加 -->
+        <!--
+        <li>
+          <span class="contact-label">X (Twitter)</span>
+          <a href="https://x.com/あなたのID" target="_blank">@あなたのID</a>
+        </li>
+        -->
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========================================
+       FOOTER
+  ======================================== -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 zen. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

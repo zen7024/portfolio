@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>セキュリティ管理アプリ | zen Portfolio</title>
+  <meta
+    name="description"
+    content="IT資産、脆弱性、インシデント、監査チェック、暗号化ボルトを1画面で扱うセキュリティ管理アプリ。"
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="../styles/site.css">
+</head>
+<body class="theme-root">
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container header-row">
+        <a class="brand" href="../index.html">zen</a>
+        <nav class="top-nav" aria-label="詳細ページナビゲーション">
+          <a href="../index.html#featured">Featured</a>
+          <a href="../index.html#other-works">Other Works</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="detail-main">
+      <div class="container">
+        <a class="back-link" href="../index.html">← ポートフォリオトップへ戻る</a>
+      </div>
+
+      <section class="container section-block detail-layout">
+        <article class="detail-hero-card">
+          <img src="../assets/security-manager-app-preview.svg" alt="セキュリティ管理アプリのプレビュー">
+          <div class="detail-copy">
+            <p class="section-kicker">Featured Project</p>
+            <h1 class="detail-title">セキュリティ管理アプリ</h1>
+            <p class="detail-lead">
+              個人運用でも散らかりやすいセキュリティ情報を、一つの画面で扱えるように整理した PWA。
+              記録、監視、バックアップ、暗号化までを軽量な静的構成でまとめています。
+            </p>
+            <div class="detail-meta">
+              <span class="detail-badge">公開中</span>
+              <span class="detail-badge">PWA</span>
+              <span class="detail-badge">端末間同期の最小実装あり</span>
+            </div>
+            <div class="detail-stack">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Netlify Functions</span>
+              <span>Netlify Blobs</span>
+            </div>
+            <div class="detail-cta">
+              <a class="button button-primary" href="https://security-manager-app.netlify.app" target="_blank" rel="noreferrer">公開サイトを見る</a>
+              <a class="button button-secondary" href="https://github.com/zen7024/security-manager-app" target="_blank" rel="noreferrer">GitHubを見る</a>
+            </div>
+          </div>
+        </article>
+
+        <aside class="detail-summary">
+          <p class="section-kicker">Summary</p>
+          <h2>この作品で見せたいこと</h2>
+          <ul>
+            <li>情報量の多い画面でも、使う順番を崩さずに整理できること</li>
+            <li>静的サイトベースでも PWA と同期機能を積み上げられること</li>
+            <li>個人ユースのセキュリティ管理を実用レベルまで持っていく視点</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="container section-block detail-layout">
+        <article class="detail-content">
+          <p class="section-kicker">Overview</p>
+          <h2>課題と設計</h2>
+          <p>
+            IT資産台帳、脆弱性管理、インシデント記録、監査チェック、パスワード管理は、
+            本来バラバラの場所に散らかりやすい領域です。そこで、個人運用でも継続しやすいように
+            「一画面で見渡せること」と「保存や復旧がしやすいこと」を優先して設計しました。
+          </p>
+          <p>
+            画面ごとの切り替えコストを減らしながら、重要情報だけは埋もれないように、
+            タブ構成、優先監視リスト、リスクマトリクス、JSONバックアップなどを組み合わせています。
+          </p>
+        </article>
+
+        <aside class="detail-links">
+          <a href="https://security-manager-app.netlify.app" target="_blank" rel="noreferrer">公開サイト</a>
+          <a href="https://github.com/zen7024/security-manager-app" target="_blank" rel="noreferrer">GitHub リポジトリ</a>
+          <a href="../index.html#other-works">その他の制作物を見る</a>
+        </aside>
+      </section>
+
+      <section class="container section-block detail-layout">
+        <article class="detail-content">
+          <p class="section-kicker">Highlights</p>
+          <h2>主な機能</h2>
+          <ul class="detail-list">
+            <li>IT資産、脆弱性、インシデント、監査チェックを同一画面で管理</li>
+            <li>PBKDF2 + AES-GCM による暗号化ボルトでパスワード情報を保護</li>
+            <li>PWA対応により、スマホでの利用とホーム画面追加を想定</li>
+            <li>Netlify Functions + Blobs により、端末間同期の最小実装を追加</li>
+            <li>Service Worker のキャッシュ戦略を見直し、iPhone で古い画面を握る不具合を修正</li>
+          </ul>
+        </article>
+
+        <article class="detail-content">
+          <p class="section-kicker">Why It Matters</p>
+          <h2>この作品が示す強み</h2>
+          <p>
+            この作品は、単に機能を増やすのではなく、情報量が多い実務画面をどう整理して、
+            どうやって日常運用に落とし込むかを形にしたものです。
+          </p>
+          <p>
+            UI整理、公開運用、同期、キャッシュ不具合の解消まで一連で扱っているため、
+            「作って終わりではなく、使われ続ける状態まで持っていく」姿勢がよく表れています。
+          </p>
+        </article>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

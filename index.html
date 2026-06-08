@@ -1,398 +1,290 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- ========================================
-       基本設定
-       charset: 文字コード（日本語対応）
-       viewport: スマホ表示を正しくするための設定
-  ======================================== -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>zen | Portfolio</title>
-
-  <style>
-    /* ========================================
-       全体のリセット＆共通設定
-    ======================================== */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* フォント・背景・文字色 */
-    body {
-      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
-      background-color: #f8f8f6;
-      color: #2d2d2d;
-      line-height: 1.8;
-      font-size: 16px;
-    }
-
-    /* ページ全体の横幅を制限（横に広がりすぎない） */
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* セクションの共通余白 */
-    section {
-      padding: 72px 0;
-    }
-
-    /* セクションタイトルの共通スタイル */
-    .section-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: #888;
-      text-transform: uppercase;
-      margin-bottom: 40px;
-    }
-
-    /* 区切り線 */
-    .divider {
-      border: none;
-      border-top: 1px solid #e0e0e0;
-    }
-
-    /* ========================================
-       HEADER（名前 + キャッチコピー）
-    ======================================== */
-    header {
-      padding: 80px 0 64px;
-      text-align: left;
-    }
-
-    header .name {
-      font-size: 2.4rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      margin-bottom: 12px;
-    }
-
-    header .tagline {
-      font-size: 1.05rem;
-      color: #666;
-      line-height: 1.7;
-    }
-
-    /* ========================================
-       ABOUT（自己紹介）
-    ======================================== */
-    #about .bio {
-      font-size: 1rem;
-      color: #444;
-      line-height: 1.9;
-    }
-
-    #about .bio p {
-      margin-bottom: 16px;
-    }
-
-    /* タグ（スキルや興味を小さく表示） */
-    #about .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 28px;
-    }
-
-    #about .tag {
-      background-color: #efefeb;
-      color: #555;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-    }
-
-    /* ========================================
-       WORKS（作品紹介カード）
-    ======================================== */
-    #works .works-grid {
-      display: grid;
-      /* スマホ: 1列 / タブレット以上: 2列 */
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-
-    /* カード1枚 */
-    .work-card {
-      background: #ffffff;
-      border: 1px solid #e8e8e4;
-      border-radius: 12px;
-      padding: 28px 24px;
-      transition: box-shadow 0.2s ease;
-    }
-
-    .work-card:hover {
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    /* カードのタイトル */
-    .work-card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: #2d2d2d;
-    }
-
-    /* カードの説明文 */
-    .work-card p {
-      font-size: 0.9rem;
-      color: #666;
-      line-height: 1.7;
-      margin-bottom: 18px;
-    }
-
-    /* カードのリンクボタン */
-    .work-card a {
-      display: inline-block;
-      font-size: 0.85rem;
-      color: #3a7bd5;
-      text-decoration: none;
-      border-bottom: 1px solid #3a7bd5;
-      padding-bottom: 1px;
-    }
-
-    .work-card a:hover {
-      color: #2558a8;
-      border-color: #2558a8;
-    }
-
-    /* 技術タグ（使用言語など） */
-    .work-card .tech-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 16px;
-    }
-
-    .work-card .tech-tag {
-      background: #f0f4ff;
-      color: #3a7bd5;
-      font-size: 0.75rem;
-      padding: 3px 10px;
-      border-radius: 12px;
-    }
-
-    /* ========================================
-       CONTACT（連絡先）
-    ======================================== */
-    #contact .contact-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    #contact .contact-list li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.95rem;
-    }
-
-    /* アイコン代わりのラベル */
-    #contact .contact-label {
-      display: inline-block;
-      min-width: 72px;
-      color: #888;
-      font-size: 0.85rem;
-    }
-
-    #contact a {
-      color: #2d2d2d;
-      text-decoration: none;
-      border-bottom: 1px solid #ccc;
-    }
-
-    #contact a:hover {
-      color: #3a7bd5;
-      border-color: #3a7bd5;
-    }
-
-    /* ========================================
-       FOOTER
-    ======================================== */
-    footer {
-      padding: 40px 0;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #aaa;
-    }
-
-    /* ========================================
-       スマホ対応（画面幅600px以下）
-    ======================================== */
-    @media (max-width: 600px) {
-      header .name {
-        font-size: 1.8rem;
-      }
-
-      section {
-        padding: 56px 0;
-      }
-
-      .works-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <meta
+    name="description"
+    content="物流現場の知見を、実用的なデジタル体験へ変える。zen の個人ポートフォリオサイト。"
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles/site.css">
 </head>
-
-<body>
-
-  <!-- ========================================
-       HEADER：名前とキャッチコピー
-  ======================================== -->
-  <header>
-    <div class="container">
-      <p class="name">zen</p>
-      <p class="tagline">
-        物流の現場から、コードの世界へ。<br>
-        コツコツ積み上げる、初心者エンジニアです。
-      </p>
-    </div>
-  </header>
-
-  <hr class="divider" />
-
-  <!-- ========================================
-       ABOUT：自己紹介
-  ======================================== -->
-  <section id="about">
-    <div class="container">
-      <p class="section-title">About</p>
-
-      <div class="bio">
-        <p>
-          こんにちは。zenと申します。
-        </p>
-        <p>
-          倉庫業・物流の現場に20年以上携わってきました。
-          毎日の仕事の中で「もっとシンプルに、もっと分かりやすく」を
-          考え続けてきた経験が、今のものづくりの軸になっています。
-        </p>
-        <p>
-          現在は AI・Java・Python を学び始めたばかりの初心者ですが、
-          着実に積み上げることを大切にしながら、
-          自分で使えるものを少しずつ作っています。
-        </p>
-        <p>
-          難しすぎず、でも妥協しない。そういうものを目指しています。
-        </p>
+<body class="theme-root">
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container header-row">
+        <a class="brand" href="./">zen</a>
+        <nav class="top-nav" aria-label="主要ナビゲーション">
+          <a href="#about">About</a>
+          <a href="#featured">Featured</a>
+          <a href="#other-works">Other Works</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
+    </header>
 
-      <!-- 興味・学習中のキーワード -->
-      <div class="tags">
-        <span class="tag">AI</span>
-        <span class="tag">Python</span>
-        <span class="tag">Java</span>
-        <span class="tag">HTML / CSS</span>
-        <span class="tag">物流・業務改善</span>
-        <span class="tag">シンプルなUIづくり</span>
+    <main>
+      <section class="hero-section">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Portfolio / 2026 Edition</p>
+            <h1>
+              物流現場の視点から、<br>
+              実用的で触りたくなる<br>
+              デジタル体験を組み立てる。
+            </h1>
+            <p class="hero-lead">
+              倉庫業務で積み重ねた「迷わない導線」「止まらない運用」「分かる画面設計」を、
+              Webアプリや業務ツールのかたちに落とし込んでいます。派手さよりも、使い続けられる強さを大切にしています。
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="https://github.com/zen7024" target="_blank" rel="noreferrer">GitHubを見る</a>
+              <a class="button button-secondary" href="mailto:ebisu7024@gmail.com">メールで連絡する</a>
+            </div>
+          </div>
+
+          <div class="hero-panel" aria-hidden="true">
+            <div class="hero-card hero-card-main">
+              <span class="panel-label">Field to Interface</span>
+              <h2>Operational Thinking</h2>
+              <p>現場の摩擦を、整理されたUIと小さな自動化へ変換する設計。</p>
+            </div>
+            <div class="hero-card hero-card-metric">
+              <span class="metric">20+</span>
+              <p>物流・倉庫の現場経験</p>
+            </div>
+            <div class="hero-card hero-card-stack">
+              <span class="panel-label">Core Stack</span>
+              <ul>
+                <li>Python / Streamlit</li>
+                <li>HTML / CSS / JavaScript</li>
+                <li>SQLite / PostgreSQL</li>
+                <li>Notion / OpenAI API</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section-block">
+        <div class="container split-block">
+          <div>
+            <p class="section-kicker">About</p>
+            <h2 class="section-title">現場の不便を、使えるかたちに翻訳する。</h2>
+          </div>
+          <div class="body-copy">
+            <p>
+              zen は、倉庫業務・物流の現場で20年以上、日々の動線と作業の詰まりを見続けてきました。
+              その経験を土台に、今は Web アプリや業務支援ツールを自分の手で作っています。
+            </p>
+            <p>
+              強みは、複雑な作業を「誰でも迷いにくい流れ」へ整えることです。
+              在庫管理、日常の小さな不便、個人運用のセキュリティ管理まで、
+              実際に使い続けられる道具として設計し、公開まで持っていくことを重視しています。
+            </p>
+            <div class="tag-row" aria-label="スキル一覧">
+              <span>Python</span>
+              <span>Streamlit</span>
+              <span>HTML / CSS / JavaScript</span>
+              <span>SQLite / PostgreSQL</span>
+              <span>業務改善</span>
+              <span>UI整理</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="featured" class="section-block">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">Featured Works</p>
+              <h2 class="section-title">代表作 3 選</h2>
+            </div>
+            <p class="section-note">
+              実務性、日常性、軽量さの異なる3つを選び、幅広い作風が見える構成にしています。
+            </p>
+          </div>
+
+          <div class="featured-grid">
+            <article class="project-card">
+              <div class="project-shot">
+                <img src="assets/security-manager-app-preview.svg" alt="セキュリティ管理アプリのイメージ">
+              </div>
+              <div class="project-body">
+                <p class="project-kind">PWA / Security Workflow</p>
+                <h3>セキュリティ管理アプリ</h3>
+                <p>
+                  IT資産、脆弱性、インシデント、監査チェック、暗号化パスワードボルトを
+                  1画面で扱える個人向けセキュリティ管理アプリ。
+                </p>
+                <ul class="tech-list">
+                  <li>HTML</li>
+                  <li>CSS</li>
+                  <li>JavaScript</li>
+                  <li>PWA</li>
+                </ul>
+                <div class="card-actions">
+                  <a class="text-link" href="works/security-manager-app.html">詳細を見る</a>
+                  <a class="text-link" href="https://security-manager-app.netlify.app" target="_blank" rel="noreferrer">公開サイト</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-shot">
+                <img src="assets/shopping-inventory-preview.svg" alt="買い物リストと在庫管理機能のイメージ">
+              </div>
+              <div class="project-body">
+                <p class="project-kind">Daily Utility / Inventory</p>
+                <h3>買い物リスト + 在庫管理</h3>
+                <p>
+                  家庭の買い物リストから始めて、在庫の保存・更新・低在庫確認まで広げた、
+                  日常の不便に寄り添う軽量アプリ。
+                </p>
+                <ul class="tech-list">
+                  <li>HTML</li>
+                  <li>CSS</li>
+                  <li>JavaScript</li>
+                  <li>localStorage</li>
+                </ul>
+                <div class="card-actions">
+                  <a class="text-link" href="works/shopping-inventory.html">詳細を見る</a>
+                  <a class="text-link" href="https://genuine-pudding-4b8619.netlify.app/" target="_blank" rel="noreferrer">公開サイト</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-shot">
+                <img src="assets/gomi-navi-preview.svg" alt="ゴミ分別ナビのイメージ">
+              </div>
+              <div class="project-body">
+                <p class="project-kind">Lightweight Web App</p>
+                <h3>ゴミ分別ナビ</h3>
+                <p>
+                  日常の「これ何ゴミだっけ？」をすぐ解決する、軽量な単一ファイル構成のナビアプリ。
+                  説明の分かりやすさを重視して設計しています。
+                </p>
+                <ul class="tech-list">
+                  <li>HTML</li>
+                  <li>JavaScript</li>
+                  <li>Single File</li>
+                </ul>
+                <div class="card-actions">
+                  <a class="text-link" href="works/gomi-navi.html">詳細を見る</a>
+                  <a class="text-link" href="https://unrivaled-yeot-43f3f6.netlify.app" target="_blank" rel="noreferrer">公開サイト</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block accent-band">
+        <div class="container proof-grid">
+          <div class="proof-card">
+            <p class="section-kicker">Approach</p>
+            <h2 class="section-title">作る前に、使う流れを考える。</h2>
+            <p class="body-copy">
+              UI だけを整えるのではなく、誰が・どの順番で・どこで迷うかを先にほどくことで、
+              小さなアプリでも運用しやすい形へ寄せています。
+            </p>
+          </div>
+          <div class="proof-list">
+            <div>
+              <span class="proof-number">01</span>
+              <p>現場の操作順を観察して、必要な情報だけを残す</p>
+            </div>
+            <div>
+              <span class="proof-number">02</span>
+              <p>軽量な技術でまず公開し、使いながら改善する</p>
+            </div>
+            <div>
+              <span class="proof-number">03</span>
+              <p>壊れにくさ、見やすさ、続けやすさを同時に整える</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="other-works" class="section-block">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">Other Works</p>
+              <h2 class="section-title">その他の制作物</h2>
+            </div>
+            <p class="section-note">
+              公開中のもの、GitHubで見られるもの、開発中の実務アプリを一覧化しています。
+            </p>
+          </div>
+
+          <div class="other-works-grid">
+            <article class="mini-card">
+              <h3>漢字辞典アプリ</h3>
+              <p>Google IME API を使って漢字と読みを検索する辞典アプリ。</p>
+              <a href="https://github.com/zen7024/kanji-jiten" target="_blank" rel="noreferrer">GitHub</a>
+            </article>
+            <article class="mini-card">
+              <h3>copipe-tool</h3>
+              <p>定型文やプロンプトを保存・検索できる、個人用の公開運用ツール。</p>
+              <a href="https://copipe-tool.onrender.com" target="_blank" rel="noreferrer">公開サイト</a>
+            </article>
+            <article class="mini-card">
+              <h3>zen-warehouse-app</h3>
+              <p>入庫から出荷確定、引当解除まで扱うイベント駆動型の倉庫管理アプリ。</p>
+              <a href="https://github.com/zen7024/zen-warehouse-app" target="_blank" rel="noreferrer">GitHub</a>
+            </article>
+            <article class="mini-card">
+              <h3>zen-design-studio</h3>
+              <p>用途ごとにデザイン案を生成し、実画面としてプレビューできる設計支援アプリ。</p>
+              <a href="https://github.com/zen7024/zen-design-studio" target="_blank" rel="noreferrer">GitHub</a>
+            </article>
+            <article class="mini-card">
+              <h3>NHK三重ニュースRSSアプリ</h3>
+              <p>RSS記事をリアルタイムで表示する、サーバー不要の軽量Webアプリ。</p>
+              <span class="coming-soon">公開準備済み</span>
+            </article>
+            <article class="mini-card">
+              <h3>mac-organizer スキル</h3>
+              <p>拡張子とキーワードでMac内のファイルを整理する自動化スキル。</p>
+              <span class="coming-soon">スキル公開済み</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section-block">
+        <div class="container contact-panel">
+          <div>
+            <p class="section-kicker">Contact</p>
+            <h2 class="section-title">実装の相談も、GitHub経由の確認も歓迎です。</h2>
+            <p class="body-copy">
+              公開しているアプリや制作過程についての質問、業務改善まわりの相談などがあれば気軽にご連絡ください。
+            </p>
+          </div>
+          <div class="contact-actions">
+            <a class="button button-primary" href="mailto:ebisu7024@gmail.com">Email</a>
+            <a class="button button-secondary" href="https://github.com/zen7024" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <p>zen portfolio</p>
+        <p>&copy; 2026 zen</p>
       </div>
-    </div>
-  </section>
-
-  <hr class="divider" />
-
-  <!-- ========================================
-       WORKS：作品紹介
-       ★ カードを増やしたいときは
-          <div class="work-card">〜</div>
-          のブロックをコピーして追加するだけ
-  ======================================== -->
-  <section id="works">
-    <div class="container">
-      <p class="section-title">Works</p>
-
-      <div class="works-grid">
-
-        <!-- 作品カード 1 -->
-        <div class="work-card">
-          <h3>引っ越しアシスタント</h3>
-          <div class="tech-tags">
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">JavaScript</span>
-          </div>
-          <p>引っ越し時のタスクと持ち物を管理するWebアプリ。
-            シンプルな操作で手続きの抜け漏れを防ぐことができます。</p>
-          <a href="#" target="_blank">→ 見てみる</a>
-        </div>
-
-        <!-- 作品カード 2 -->
-        <div class="work-card">
-          <h3>ゴミ出しナビ</h3>
-          <div class="tech-tags">
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
-          </div>
-          <p>曜日ごとのゴミの種類を確認できるシンプルなナビページ。
-            毎朝確認できるように軽量設計にしました。</p>
-          <a href="#" target="_blank">→ 見てみる</a>
-        </div>
-
-        <!-- 作品カード 3 -->
-        <div class="work-card">
-          <h3>お母さん買い物リスト</h3>
-          <div class="tech-tags">
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">JavaScript</span>
-          </div>
-          <p>家族が使いやすいシンプルな買い物リストアプリ。
-            スマホで見やすいように縦スクロール設計にしました。</p>
-          <a href="#" target="_blank">→ 見てみる</a>
-        </div>
-
-        <!-- ★ ここにカードを追加できます ★ -->
-
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider" />
-
-  <!-- ========================================
-       CONTACT：連絡先
-       ★ href="#" の部分を実際のURLに変えてください
-  ======================================== -->
-  <section id="contact">
-    <div class="container">
-      <p class="section-title">Contact</p>
-
-      <ul class="contact-list">
-        <li>
-          <span class="contact-label">Email</span>
-          <a href="mailto:ebisu7024@gmail.com">ebisu7024@gmail.com</a>
-        </li>
-        <li>
-          <span class="contact-label">GitHub</span>
-          <a href="https://github.com/zen7024" target="_blank">github.com/zen7024</a>
-        </li>
-        <!-- SNSを追加したい場合はここにコピーして追加 -->
-        <!--
-        <li>
-          <span class="contact-label">X (Twitter)</span>
-          <a href="https://x.com/あなたのID" target="_blank">@あなたのID</a>
-        </li>
-        -->
-      </ul>
-    </div>
-  </section>
-
-  <!-- ========================================
-       FOOTER
-  ======================================== -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 zen. All rights reserved.</p>
-    </div>
-  </footer>
-
+    </footer>
+  </div>
 </body>
 </html>
